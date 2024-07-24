@@ -6,7 +6,8 @@ html
   h1 FitTrack
   a(href=`/workout/${user.userId}`) workout
   a(href=`/meals/${user.userId}`) meals
-  p Welcome #{user.username}
+  p Welcome 
+    a(href=`/profile/${user.userId}`) #{user.username}
    
     
 
