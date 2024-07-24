@@ -21,7 +21,10 @@ form input,
 form button,
 form a {
 	/* display: block; */
-	margin-bottom: 10px; /* Adds padding under each line */
+	margin-bottom: 10px;
+}
+table {
+	margin: auto;
 }
 .nav {
 	padding: 50px;

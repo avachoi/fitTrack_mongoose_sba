@@ -1,4 +1,4 @@
-### FitTrack
+# FitTrack
 
 FitTrack is a fitness tracking application that allows users to log and manage their workouts, meals, and profile information. The application is built using Node.js, Express, MongoDB, and Pug as the template engine.
 
@@ -52,24 +52,24 @@ The application will be running on http://localhost:8080.
 
 ## Usage
 
-# User Authentication
+### User Authentication
 
 - Signup: Visit http://localhost:8080/signup to create a new account.
 - Login: Visit http://localhost:8080 to login.
 
-# Profile Management
+### Profile Management
 
 - View Profile: After logging in, navigate to http://localhost:8080/profile/:userId to view your profile.
 - Update Profile: Edit your profile information directly on the profile page.
 - Delete Profile: Delete your profile from the profile page.
 
-# Workout Logging
+### Workout Logging
 
 - View Workouts: Navigate to http://localhost:8080/workout/:userId to view your workouts.
 - Add Workout: Use the form on the workouts page to add a new workout.
 - Delete Workout: Delete a workout directly from the workouts page.
 
-# Meal Logging
+### Meal Logging
 
 - View Meals: Navigate to http://localhost:8080/meals/:userId to view your meals.
 - Add Meal: Use the form on the meals page to add a new meal.
