@@ -25,7 +25,7 @@ html
             td #{workout.workoutType}
             td #{workout.duration}
 
-  form(action=`/workout?_method=PUT` method="POST")
+  form(action=`/workout/${userId}` method="POST")
     label(for="date") Date:
     input(type="text" name="date" id="date" required)
     label(for="type") Type:

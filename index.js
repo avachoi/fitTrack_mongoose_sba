@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
+const { v4: uuidv4 } = require("uuid");
 const dbConnect = require("./conn.js");
 
 const usersData = require("./data/users.js");
@@ -68,7 +69,7 @@ app.post("/login", async (req, res) => {
 			console.log("######user#######", user);
 			const result = req.body.password === user.password;
 			if (result) {
-				res.redirect(`/workout/${user._id}`);
+				res.redirect(`/workout/${user.userId}`);
 			} else {
 				res.status(400).send("Password doesn't match");
 			}
@@ -95,6 +96,7 @@ app.post("/signup", async (req, res) => {
 		} else {
 			const createdUser = await Users.create({
 				username: newUser.username,
+				userId: uuidv4(),
 				password: newUser.password,
 				height: newUser.height,
 				weight: newUser.weight,
@@ -107,19 +109,55 @@ app.post("/signup", async (req, res) => {
 		res.status(500).send("Error signing up");
 	}
 });
-app.get("/workout/:id", async (req, res) => {
+app.get("/workout/:userId", async (req, res) => {
 	try {
-		console.log("req.params.id?", req.params.id);
-		const workout = await Workouts.find({ userId: req.params.id });
+		console.log("req.params.userId?", req.params.userId);
+		const workout = await Workouts.find({ userId: req.params.userId });
 		console.log("&&&&&&&&&workout&&&&&&", workout);
-		res.render("workout", { workouts: workout });
+		res.render("workout", { workouts: workout, userId: req.params.userId });
 	} catch (error) {
 		console.log("Error retrieving workout db", error);
 		res.status(500).send("Error retrieving workout db");
 	}
 });
-app.get("/meals", (req, res) => {
-	res.render("meals");
+app.post("/workout/:userId", async (req, res) => {
+	try {
+		const newWorkout = req.body;
+		const createdWorkout = await Workouts.create({
+			userId: req.params.userId,
+			date: newWorkout.date,
+			workoutType: newWorkout.type,
+			duration: newWorkout.duration,
+		});
+		res.redirect(`/workout/${req.params.userId}`);
+	} catch (error) {
+		console.log("Error creating a new workout", error);
+		res.status(500).send("Error creating a new workout");
+	}
+});
+app.get("/meals/:userId", async (req, res) => {
+	try {
+		const meals = await Meals.find({ userId: req.params.userId });
+		res.render("meals", { meals: meals, userId: req.params.userId });
+	} catch (error) {
+		console.log("Error retrieving meals data", error);
+		res.status(500).send("Error retrieving meals data");
+	}
+});
+app.post("/meals/:userId", async (req, res) => {
+	try {
+		const newMeal = req.body;
+		const createdMeal = await Meals.create({
+			userId: req.params.userId,
+			date: newMeal.date,
+			foodItem: newMeal.foodItem,
+			calories: newMeal.calories,
+		});
+		res.redirect(`/meals/${req.params.userId}`);
+	} catch (error) {
+		console.log("Error creating a new workout", error);
+		res.status(500).send("Error creating a new workout");
+	}
 });
 app.get("/users", async (req, res) => {
 	try {
