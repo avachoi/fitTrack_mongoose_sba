@@ -11,6 +11,7 @@ const workoutData = require("./data/workout.js");
 
 const Users = require("./models/users");
 const Meals = require("./models/meals.js");
+const Workouts = require("./models/workout.js");
 
 const app = express();
 const port = 8080;
@@ -85,14 +86,21 @@ app.get("/signup", (req, res) => {
 app.post("/signup", async (req, res) => {
 	try {
 		const newUser = req.body;
-		const createdUser = await Users.create({
-			username: newUser.username,
-			password: newUser.password,
-			height: newUser.height,
-			weight: newUser.weight,
-		});
-		console.log("createdUser", createdUser);
-		res.redirect("/");
+		const existedName = Users.findOne({ username: newUser.username });
+		if (existedName) {
+			res.send("Username already existed");
+		} else if (newUser.username === newUser.password) {
+			res.send("Username and Password can not be same.");
+		} else {
+			const createdUser = await Users.create({
+				username: newUser.username,
+				password: newUser.password,
+				height: newUser.height,
+				weight: newUser.weight,
+			});
+			console.log("createdUser", createdUser);
+			res.redirect("/");
+		}
 	} catch (error) {
 		console.log("Error signing up", error);
 		res.status(500).send("Error signing up");
@@ -149,6 +157,10 @@ app.get("/seed", async (req, res) => {
 
 	await Meals.deleteMany({});
 	await Meals.insertMany(mealsData);
+
+	await Workouts.deleteMany({});
+	await Workouts.insertMany(workoutData);
+
 	res.send("seeded!");
 });
 

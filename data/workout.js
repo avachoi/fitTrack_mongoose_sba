@@ -1,75 +1,124 @@
-// Creating the simple data structures we'll work with.
-// How we choose to store and organize this data is very important!
-// Different options and techniques for storing data and
-// creating relationships between different data sets will be
-// explored during lessons on database integrations and techniques.
-
-// The "posts" data will include information about
-// social media posts that the users make.
-const posts = [
+const workouts = [
 	{
-		id: 1,
-		userId: 1,
-		title: "user1's post1",
-		content:
-			"similique esse doloribus nihil accusamus\nomnis dolorem fuga consequuntur reprehenderit fugit recusandae temporibus\nperspiciatis cum ut laudantium\nomnis aut molestiae vel vero",
+		userId: "66a008acf7769e21f0bcfdf8",
+		date: 0,
+		workoutType: "Yoga",
+		duration: 30,
 	},
 	{
-		id: 2,
-		userId: 1,
-		title: "user1's post2",
-		content:
-			"eum sed dolores ipsam sint possimus debitis occaecati\ndebitis qui qui et\nut placeat enim earum aut odit facilis\nconsequatur suscipit necessitatibus rerum sed inventore temporibus consequatur",
+		userId: "66a008acf7769e21f0bcfdf8",
+		date: 0,
+		workoutType: "Running",
+		duration: 50,
 	},
 	{
-		id: 3,
-		userId: 1,
-		title: "user1's post3",
-		content:
-			"non et quaerat ex quae ad maiores\nmaiores recusandae totam aut blanditiis mollitia quas illo\nut voluptatibus voluptatem\nsimilique nostrum eum",
+		userId: "66a008acf7769e21f0bcfdff",
+		date: 0,
+		workoutType: "Zumba",
+		duration: 30,
 	},
 	{
-		id: 4,
-		userId: 2,
-		title: "user2's post1",
-		content:
-			"odit magnam ut saepe sed non qui\ntempora atque nihil\naccusamus illum doloribus illo dolor\neligendi repudiandae odit magni similique sed cum maiores",
+		userId: "66a008acf7769e21f0bcfdff",
+		date: 0,
+		workoutType: "Stretching",
+		duration: 20,
 	},
 	{
-		id: 5,
-		userId: 2,
-		title: "user2's post2",
-		content:
-			"alias dolor cumque\nimpedit blanditiis non eveniet odio maxime\nblanditiis amet eius quis tempora quia autem rem\na provident perspiciatis quia",
+		userId: "66a008acf7769e21f0bcfdfb",
+		date: 0,
+		workoutType: "HoolaHoops",
+		duration: 10,
 	},
 	{
-		id: 6,
-		userId: 2,
-		title: "user2's post3",
-		content:
-			"debitis eius sed quibusdam non quis consectetur vitae\nimpedit ut qui consequatur sed aut in\nquidem sit nostrum et maiores adipisci atque\nquaerat voluptatem adipisci repudiandae",
+		userId: "66a008acf7769e21f0bcfdfb",
+		date: 0,
+		workoutType: "Walking",
+		duration: 90,
 	},
 	{
-		id: 7,
-		userId: 3,
-		title: "user3's post1",
-		content:
-			"deserunt eos nobis asperiores et hic\nest debitis repellat molestiae optio\nnihil ratione ut eos beatae quibusdam distinctio maiores\nearum voluptates et aut adipisci ea maiores voluptas maxime",
+		userId: "66a008acf7769e21f0bcfdfc",
+		date: 0,
+		workoutType: "Yoga",
+		duration: 60,
 	},
 	{
-		id: 8,
-		userId: 3,
-		title: "user3's post2",
-		content:
-			"rerum ut et numquam laborum odit est sit\nid qui sint in\nquasi tenetur tempore aperiam et quaerat qui in\nrerum officiis sequi cumque quod",
+		userId: "66a008acf7769e21f0bcfdfc",
+		date: 0,
+		workoutType: "Pilates",
+		duration: 45,
 	},
 	{
-		id: 9,
-		userId: 3,
-		title: "user3's post3",
-		content:
-			"ea velit perferendis earum ut voluptatem voluptate itaque iusto\ntotam pariatur in\nnemo voluptatem voluptatem autem magni tempora minima in\nest distinctio qui assumenda accusamus dignissimos officia nesciunt nobis",
+		userId: "66a008acf7769e21f0bcfdf7",
+		date: 0,
+		workoutType: "Lowerbody",
+		duration: 30,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdf7",
+		date: 0,
+		workoutType: "Upperbody",
+		duration: 30,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdfd",
+		date: 0,
+		workoutType: "Yoga",
+		duration: 30,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdfd",
+		date: 0,
+		workoutType: "Running",
+		duration: 80,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdf8",
+		date: 0,
+		workoutType: "Yoga",
+		duration: 30,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfe01",
+		date: 0,
+		workoutType: "Bike",
+		duration: 10,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfe01",
+		date: 0,
+		workoutType: "Dance",
+		duration: 46,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdfa",
+		date: 0,
+		workoutType: "Swimming",
+		duration: 70,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdfa",
+		date: 0,
+		workoutType: "Boxing",
+		duration: 20,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfe00",
+		date: 0,
+		workoutType: "Bike",
+		duration: 60,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfe00",
+		date: 0,
+		workoutType: "golf",
+		duration: 110,
+	},
+	{
+		userId: "66a008acf7769e21f0bcfdf8",
+		date: 0,
+		workoutType: "Soccer",
+		duration: 90,
 	},
 ];
 
-module.exports = posts;
+module.exports = workouts;
