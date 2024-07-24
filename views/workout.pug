@@ -1,6 +1,6 @@
 html
   head
-    title Edit post
+    title FitTrack
     link(rel="stylesheet" href="/styles.css")
   body(class="body")
   h1 FitTrack
@@ -13,10 +13,17 @@ html
 
   h2 workout
   table(style='width:100%', border='1')
-    tr 
-      th Date
-      th Type
-      th duration
+    thead
+        tr 
+        th Date
+        th Type
+        th Duration
+    tbody
+       each workout in workouts
+        tr
+            td #{workout.date}
+            td #{workout.workoutType}
+            td #{workout.duration}
 
   form(action=`/workout?_method=PUT` method="POST")
     label(for="date") Date:

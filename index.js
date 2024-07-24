@@ -65,9 +65,10 @@ app.post("/login", async (req, res) => {
 	try {
 		const user = await Users.findOne({ username: req.body.username });
 		if (user) {
+			console.log("######user#######", user);
 			const result = req.body.password === user.password;
 			if (result) {
-				res.send(`Welcome ${user.username}`);
+				res.redirect(`/workout/${user._id}`);
 			} else {
 				res.status(400).send("Password doesn't match");
 			}
@@ -106,8 +107,16 @@ app.post("/signup", async (req, res) => {
 		res.status(500).send("Error signing up");
 	}
 });
-app.get("/workout", (req, res) => {
-	res.render("workout");
+app.get("/workout/:id", async (req, res) => {
+	try {
+		console.log("req.params.id?", req.params.id);
+		const workout = await Workouts.find({ userId: req.params.id });
+		console.log("&&&&&&&&&workout&&&&&&", workout);
+		res.render("workout", { workouts: workout });
+	} catch (error) {
+		console.log("Error retrieving workout db", error);
+		res.status(500).send("Error retrieving workout db");
+	}
 });
 app.get("/meals", (req, res) => {
 	res.render("meals");
