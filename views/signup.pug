@@ -10,11 +10,16 @@ html
     form(action="/signup" method="POST")
       label(for="username") Username:
       input(type="text" name="username" id="username" required)
+      br
       label(for="password") password:
       input(type="text" name="password" id="password" required)
+      br
       label(for="height") height:
       input(type="text" name="height" id="height" required)
+      br
       label(for="weight") weight:
       input(type="text" name="weight" id="weight" required)
+      br
       button(type="submit") Sign up
+      br
       a(href=`/`) Log In

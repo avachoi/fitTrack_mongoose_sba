@@ -4,8 +4,8 @@ html
     link(rel="stylesheet" href="/styles.css")
   body(class="body")
   h1 FitTrack
-  a(href=`/workout/${user.userId}`) workout
-  a(href=`/meals/${user.userId}`) meals
+  a(href=`/workout/${user.userId}` class="nav") workout
+  a(href=`/meals/${user.userId}` class="nav") meals
   p Welcome 
     a(href=`/profile/${user.userId}`) #{user.username}
    

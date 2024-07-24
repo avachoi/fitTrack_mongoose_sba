@@ -10,8 +10,19 @@
 	color: palevioletred;
 }
 .body {
-	margin: 50px;
+	margin: auto;
+	text-align: center;
 }
 h1 {
 	text-align: center;
+}
+form label,
+form input,
+form button,
+form a {
+	/* display: block; */
+	margin-bottom: 10px; /* Adds padding under each line */
+}
+.nav {
+	padding: 50px;
 }

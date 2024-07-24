@@ -1,23 +1,76 @@
-## Express App with Users and Posts
+### FitTrack
 
-This is an Express application that allows users to manage a list of users and their posts. The app provides functionality for adding, viewing, editing, and deleting users and their posts. It also includes middleware for logging requests and handling errors.
+FitTrack is a fitness tracking application that allows users to log and manage their workouts, meals, and profile information. The application is built using Node.js, Express, MongoDB, and Pug as the template engine.
 
-# Technologies
+## Features
 
-Node.js: A JavaScript runtime environment that executes JavaScript code outside of a web browser.
+- User authentication (signup, login)
+- Profile management (view, update, delete)
+- Workout logging and management
+- Meal logging and management
 
-Express.js: A web application framework for Node.js that provides a robust set of features for web and mobile applications.
+## Installation
 
-Pug (formerly Jade): A templating engine for Node.js and Express, used to generate HTML with concise and readable syntax.
+To get started with FitTrack, follow these steps:
 
-Body-parser: Middleware for Express.js to parse incoming request bodies in a middleware before handlers, available under the req.body property.
+1. Clone the repository:
 
-Path: A Node.js core module for handling and transforming file paths.
+```bash
+git clone https://github.com/avachoi/fitTrack.git
+cd fitTrack
+```
 
-Morgan: HTTP request logger middleware for Node.js that logs requests to the console, useful for debugging and monitoring.
+2. Install dependencies:
 
-Method-override: Middleware for Express.js that lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
+```bash
+npm install
+```
 
-HTML and CSS: Used for creating and styling web pages, with CSS used to define the presentation of elements.
+3. Set up the environment variables:
 
-Git: Version control system used for tracking changes in the source code during software development.
+Create a .env file in the root directory and add your MongoDB connection string:
+
+```bash
+MONGODB_URI=your_mongodb_uri
+```
+
+4. Seed the database (optional):
+
+If you want to seed the database with initial data, run:
+
+```bash
+npm run seed
+```
+
+5. Start the application:
+
+```bash
+npm start
+```
+
+The application will be running on http://localhost:8080.
+
+## Usage
+
+# User Authentication
+
+- Signup: Visit http://localhost:8080/signup to create a new account.
+- Login: Visit http://localhost:8080 to login.
+
+# Profile Management
+
+- View Profile: After logging in, navigate to http://localhost:8080/profile/:userId to view your profile.
+- Update Profile: Edit your profile information directly on the profile page.
+- Delete Profile: Delete your profile from the profile page.
+
+# Workout Logging
+
+- View Workouts: Navigate to http://localhost:8080/workout/:userId to view your workouts.
+- Add Workout: Use the form on the workouts page to add a new workout.
+- Delete Workout: Delete a workout directly from the workouts page.
+
+# Meal Logging
+
+- View Meals: Navigate to http://localhost:8080/meals/:userId to view your meals.
+- Add Meal: Use the form on the meals page to add a new meal.
+- Delete Meal: Delete a meal directly from the meals page.
