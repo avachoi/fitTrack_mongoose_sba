@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title User List
+    link(rel="stylesheet" href="/styles.css")
+  body(class="body")
+    h1 FitTrack
+    
+    h2 Login
+    form(action="/signup" method="POST")
+      label(for="username") Username:
+      input(type="text" name="username" id="username" required)
+      label(for="password") email:
+      input(type="text" name="password" id="password" required)
+      label(for="height") height:
+      input(type="text" name="height" id="height" required)
+      label(for="weight") weight:
+      input(type="text" name="weight" id="weight" required)
+      button(type="submit") Login
+      a(href=`/`) Log in

@@ -1,16 +1,26 @@
-doctype html
 html
   head
-    title User List
+    title Edit post
     link(rel="stylesheet" href="/styles.css")
   body(class="body")
-    h1 FitTrack
+  h1 FitTrack
+  a(href=`/workout`) workout
+  a(href=`/meals`) meals
+  p Welcome 
+   
     
-    h2 Login
-    form(action="/" method="POST")
-      label(for="username") Username:
-      input(type="text" name="username" id="username" required)
-      label(for="email") email:
-      input(type="text" name="email" id="email" required)
-      button(type="submit") Login
-      a(href=`/signup`) Sign up
+
+
+  h2 users
+  table(style='width:100%', border='1')
+    thead
+        tr 
+        th UserName
+        th Height
+        th Weight
+    tbody
+       each user in users
+        tr
+            td #{user.username}
+            td #{user.height}
+            td #{user.weight}

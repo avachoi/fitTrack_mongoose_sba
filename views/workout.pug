@@ -1,0 +1,28 @@
+html
+  head
+    title Edit post
+    link(rel="stylesheet" href="/styles.css")
+  body(class="body")
+  h1 FitTrack
+  a(href=`/workout`) workout
+  a(href=`/meals`) meals
+  p Welcome 
+   
+    
+
+
+  h2 workout
+  table(style='width:100%', border='1')
+    tr 
+      th Date
+      th Type
+      th duration
+
+  form(action=`/workout?_method=PUT` method="POST")
+    label(for="date") Date:
+    input(type="text" name="date" id="date" required)
+    label(for="type") Type:
+    input(type="text" name="type" id="type" required)
+    label(for="duration") Duration:
+    input(type="textarea" name="duration" id="duration" required)
+    button(type="submit") Add
