@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title FitTrack
+    link(rel="stylesheet" href="/styles.css")
+  body(class="body")
+    h1 FitTrack
+    
+    h2 profile
+    form(action=`/profile/${user._id}?_method=PUT` method="POST")
+      label(for="username") Username:
+      input(type="text" name="username" id="username" value=user.username required)
+      label(for="password") password:
+      input(type="text" name="password" id="password" value=user.password required)
+      label(for="height") height:
+      input(type="text" name="height" id="height" value=user.height required)
+      label(for="weight") weight:
+      input(type="text" name="weight" id="weight" value=user.weight required)
+      button(type="submit") save
+      
+    form(action=`/profile/${user.id}` method="DELETE")
+        button(type="submit") delete account

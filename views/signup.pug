@@ -6,15 +6,15 @@ html
   body(class="body")
     h1 FitTrack
     
-    h2 Login
+    h2 Sign up
     form(action="/signup" method="POST")
       label(for="username") Username:
       input(type="text" name="username" id="username" required)
-      label(for="password") email:
+      label(for="password") password:
       input(type="text" name="password" id="password" required)
       label(for="height") height:
       input(type="text" name="height" id="height" required)
       label(for="weight") weight:
       input(type="text" name="weight" id="weight" required)
-      button(type="submit") Login
-      a(href=`/`) Log in
+      button(type="submit") Sign up
+      a(href=`/`) Log In

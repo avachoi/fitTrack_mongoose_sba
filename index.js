@@ -82,6 +82,22 @@ app.post("/login", async (req, res) => {
 app.get("/signup", (req, res) => {
 	res.render("signup");
 });
+app.post("/signup", async (req, res) => {
+	try {
+		const newUser = req.body;
+		const createdUser = await Users.create({
+			username: newUser.username,
+			password: newUser.password,
+			height: newUser.height,
+			weight: newUser.weight,
+		});
+		console.log("createdUser", createdUser);
+		res.redirect("/");
+	} catch (error) {
+		console.log("Error signing up", error);
+		res.status(500).send("Error signing up");
+	}
+});
 app.get("/workout", (req, res) => {
 	res.render("workout");
 });
@@ -96,24 +112,27 @@ app.get("/users", async (req, res) => {
 		console.log("Error retrieving users:", error);
 		res.status(500).send("Error retrieving users");
 	}
-
-	// console.log("Users", Users);
-	// Users.find({}, (err, users) => {
-	// 	if (err) {
-	// 		console.log(err);
-	// 		res.status(500).send("Error retrieving users");
-	// 	} else {
-	// 		res.render("users", { users: users });
-	// 	}
-	// });
-
-	// try {
-	// 	console.log("Users", Users);
-	// 	res.render("users", { users: Users });
-	// } catch (eror) {
-	// 	console.log("can't retrieve users data");
-	// 	throw error;
-	// }
+});
+app.get("/profile/:id", async (req, res) => {
+	try {
+		const user = await Users.findById(req.params.id);
+		res.render("profile", { user: user });
+	} catch (error) {
+		console.log("Error rendering profile:", error);
+		res.status(500).send("Error rendering user profile");
+	}
+});
+app.put("/profile/:id", async (req, res) => {
+	try {
+		console.log("req.body", req.body);
+		const updatedUser = await Users.findByIdAndUpdate(req.params.id, req.body, {
+			new: true,
+		});
+		res.redirect(`/profile/${updatedUser.id}`);
+	} catch (error) {
+		console.log("Error updating profile:", error);
+		res.status(500).send("Error updating user profile");
+	}
 });
 
 app.get("/seed", async (req, res) => {
@@ -124,93 +143,6 @@ app.get("/seed", async (req, res) => {
 	await Meals.insertMany(mealsData);
 	res.send("seeded!");
 });
-// app.post("/", (req, res) => {
-// 	if (req.body.username && req.body.email) {
-// 		const newUser = {
-// 			id: usersData.length > 0 ? usersData[usersData.length - 1].id + 1 : 1,
-// 			username: req.body.username,
-// 			email: req.body.email,
-// 		};
-// 		usersData.push(newUser);
-// 		console.log("new user in the list", usersData[usersData.length - 1]);
-// 		res.redirect("/");
-// 	} else {
-// 		res.json({ error: "Insufficient Data for new user" });
-// 	}
-// });
-
-// app.get("/:id", (req, res) => {
-// 	let user = usersData.find((user) => user.id == parseInt(req.params.id));
-
-// 	if (user) {
-// 		let posts = postsData.filter((post) => post.userId == req.params.id);
-// 		if (req.query.filterTitle) {
-// 			posts = posts.filter((post) =>
-// 				post.title.toLowerCase().includes(req.query.filterTitle.toLowerCase())
-// 			);
-// 		}
-// 		const usersPosts = {
-// 			user: user,
-// 			posts: posts,
-// 		};
-
-// 		if (usersPosts) {
-// 			res.render("posts", usersPosts);
-// 		}
-// 	} else {
-// 		res.status(404).send("user not found");
-// 	}
-// });
-// app.post("/:id", (req, res) => {
-// 	if (req.body.title && req.body.content) {
-// 		let user = usersData.find((user) => user.id === req.params.id);
-
-// 		const usersPosts = {
-// 			user: user,
-// 			posts: postsData.filter((post) => post.userId == req.params.id),
-// 		};
-// 		const post = {
-// 			id: postsData[postsData.length - 1].id + 1,
-// 			userId: req.params.id,
-// 			title: req.body.title,
-// 			content: req.body.content,
-// 		};
-// 		postsData.push(post);
-// 		console.log("postsData", postsData);
-// 		res.redirect(`/${req.params.id}`);
-// 	} else {
-// 		res.json({ error: "Insufficient Data" });
-// 	}
-// });
-
-// app.get("/:id/:postId", (req, res) => {
-// 	const post = postsData.find((p) => p.id == req.params.postId);
-// 	if (post) {
-// 		res.render("post", { userId: post.userId, post: post });
-// 	} else {
-// 		res.json({ error: "Post not found" });
-// 	}
-// });
-// app.put("/:id/:postId", (req, res) => {
-// 	const postIndex = postsData.findIndex((p) => p.id == req.params.postId);
-// 	if (postIndex !== -1 && req.body.title && req.body.content) {
-// 		postsData[postIndex].title = req.body.title;
-// 		postsData[postIndex].content = req.body.content;
-// 		console.log("editied", postsData[postIndex]);
-// 		res.redirect(`/${req.params.id}`);
-// 	} else {
-// 		res.json({ error: "post not found or insufficient data" });
-// 	}
-// });
-// app.delete("/:id/:postId", (req, res) => {
-// 	const postIndex = postsData.findIndex((p) => p.id == req.params.postId);
-// 	if (postIndex) {
-// 		postsData.splice(postIndex, 1);
-// 		res.redirect(`/${req.params.id}`);
-// 	} else {
-// 		res.json({ error: "post to be deleted not found" });
-// 	}
-// });
 
 /////////////////////ERRORS////////////////////////////////////////////////////
 app.get("/", (req, res) => {
