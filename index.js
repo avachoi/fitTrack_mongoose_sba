@@ -124,7 +124,6 @@ app.get("/profile/:id", async (req, res) => {
 });
 app.put("/profile/:id", async (req, res) => {
 	try {
-		console.log("req.body", req.body);
 		const updatedUser = await Users.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
 		});
@@ -132,6 +131,15 @@ app.put("/profile/:id", async (req, res) => {
 	} catch (error) {
 		console.log("Error updating profile:", error);
 		res.status(500).send("Error updating user profile");
+	}
+});
+app.delete("/profile/:id", async (req, res) => {
+	try {
+		await Users.findByIdAndDelete(req.params.id);
+		res.redirect("/");
+	} catch (error) {
+		console.log("Error deleting user:", error);
+		res.status(500).send("Error deleting user profile");
 	}
 });
 

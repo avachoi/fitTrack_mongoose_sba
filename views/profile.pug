@@ -18,5 +18,5 @@ html
       input(type="text" name="weight" id="weight" value=user.weight required)
       button(type="submit") save
       
-    form(action=`/profile/${user.id}` method="DELETE")
+    form(action=`/profile/${user.id}?_method=DELETE` method="POST")
         button(type="submit") delete account
