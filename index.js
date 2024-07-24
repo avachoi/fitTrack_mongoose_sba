@@ -113,8 +113,10 @@ app.get("/workout/:userId", async (req, res) => {
 	try {
 		console.log("req.params.userId?", req.params.userId);
 		const workout = await Workouts.find({ userId: req.params.userId });
+		const user = await Users.findOne({ userId: req.params.userId });
 		console.log("&&&&&&&&&workout&&&&&&", workout);
-		res.render("workout", { workouts: workout, userId: req.params.userId });
+		console.log("&&&&&&&&&user&&&&&&", user);
+		res.render("workout", { workouts: workout, user: user });
 	} catch (error) {
 		console.log("Error retrieving workout db", error);
 		res.status(500).send("Error retrieving workout db");
@@ -138,7 +140,8 @@ app.post("/workout/:userId", async (req, res) => {
 app.get("/meals/:userId", async (req, res) => {
 	try {
 		const meals = await Meals.find({ userId: req.params.userId });
-		res.render("meals", { meals: meals, userId: req.params.userId });
+		const user = await Users.findOne({ userId: req.params.userId });
+		res.render("meals", { meals: meals, user: user });
 	} catch (error) {
 		console.log("Error retrieving meals data", error);
 		res.status(500).send("Error retrieving meals data");

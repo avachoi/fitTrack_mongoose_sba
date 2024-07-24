@@ -1,7 +1,7 @@
 const users = [
 	{
 		username: "admin",
-		userId: 00,
+		userId: 10,
 		password: "0000",
 		height: 0,
 		weight: 0,

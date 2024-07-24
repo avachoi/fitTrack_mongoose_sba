@@ -4,9 +4,9 @@ html
     link(rel="stylesheet" href="/styles.css")
   body(class="body")
   h1 FitTrack
-  a(href=`/workout`) workout
-  a(href=`/meals`) meals
-  p Welcome 
+  a(href=`/workout/${user.userId}`) workout
+  a(href=`/meals/${user.userId}`) meals
+  p Welcome #{user.username}
    
     
 
@@ -25,7 +25,7 @@ html
             td #{meal.foodItem}
             td #{meal.calories}
 
-  form(action=`/meals/${userId}` method="POST")
+  form(action=`/meals/${user.userId}` method="POST")
     label(for="date") Date:
     input(type="text" name="date" id="date" required)
     label(for="foodItem") Food Item:
