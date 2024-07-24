@@ -89,14 +89,15 @@ app.post("/signup", async (req, res) => {
 	try {
 		const newUser = req.body;
 		const existedName = Users.findOne({ username: newUser.username });
-		if (existedName) {
+		if (existedName.username) {
+			console.log("existedName", existedName);
 			res.send("Username already existed");
 		} else if (newUser.username === newUser.password) {
 			res.send("Username and Password can not be same.");
 		} else {
 			const createdUser = await Users.create({
 				username: newUser.username,
-				userId: uuidv4(),
+				userId: parseInt(uuidv4()),
 				password: newUser.password,
 				height: newUser.height,
 				weight: newUser.weight,
@@ -171,29 +172,33 @@ app.get("/users", async (req, res) => {
 		res.status(500).send("Error retrieving users");
 	}
 });
-app.get("/profile/:id", async (req, res) => {
+app.get("/profile/:userId", async (req, res) => {
 	try {
-		const user = await Users.findById(req.params.id);
+		const user = await Users.findOne({ userId: req.params.userId });
 		res.render("profile", { user: user });
 	} catch (error) {
 		console.log("Error rendering profile:", error);
 		res.status(500).send("Error rendering user profile");
 	}
 });
-app.put("/profile/:id", async (req, res) => {
+app.put("/profile/:userId", async (req, res) => {
 	try {
-		const updatedUser = await Users.findByIdAndUpdate(req.params.id, req.body, {
-			new: true,
-		});
-		res.redirect(`/profile/${updatedUser.id}`);
+		const updatedUser = await Users.findOneAndUpdate(
+			{ userId: req.params.userId },
+			req.body,
+			{
+				new: true,
+			}
+		);
+		res.redirect(`/profile/${updatedUser.userId}`);
 	} catch (error) {
 		console.log("Error updating profile:", error);
 		res.status(500).send("Error updating user profile");
 	}
 });
-app.delete("/profile/:id", async (req, res) => {
+app.delete("/profile/:userId", async (req, res) => {
 	try {
-		await Users.findByIdAndDelete(req.params.id);
+		await Users.findOneAndDelete(req.params.userId);
 		res.redirect("/");
 	} catch (error) {
 		console.log("Error deleting user:", error);
