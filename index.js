@@ -65,19 +65,15 @@ app.use("/meals", mealRoutes);
 app.use("/profile", profileRoutes);
 
 app.get("/", (req, res) => {
-	// res.set("Cache-Control", "public, max-age=3600");
-	// res.set();
-
 	res.render("login");
 });
 app.post("/login", async (req, res) => {
 	try {
 		const user = await Users.findOne({ username: req.body.username });
 		if (user) {
-			console.log("######user#######", user);
 			const result = req.body.password === user.password;
 			if (result) {
-				res.redirect(`/workout/${user.userId}`);
+				res.redirect(`/workout/${user.username}`);
 			} else {
 				res.status(400).send("Password doesn't match");
 			}
@@ -96,16 +92,14 @@ app.get("/signup", (req, res) => {
 app.post("/signup", async (req, res) => {
 	try {
 		const newUser = req.body;
-		const existedName = Users.findOne({ username: newUser.username });
-		if (existedName.username) {
-			console.log("existedName", existedName);
+		const existedName = await Users.findOne({ username: newUser.username });
+		if (existedName) {
 			res.send("Username already existed");
 		} else if (newUser.username === newUser.password) {
 			res.send("Username and Password can not be same.");
 		} else {
 			const createdUser = await Users.create({
 				username: newUser.username,
-				userId: parseInt(uuidv4()),
 				password: newUser.password,
 				height: newUser.height,
 				weight: newUser.weight,

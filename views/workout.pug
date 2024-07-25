@@ -4,10 +4,10 @@ html
     link(rel="stylesheet" href="/styles.css")
   body(class="body")
   h1 FitTrack
-  a(href=`/workout/${user.userId}` class="nav") workout
-  a(href=`/meals/${user.userId}` class="nav") meals
+  a(href=`/workout/${user.username}` class="nav") workout
+  a(href=`/meals/${user.username}` class="nav") meals
   p Welcome 
-     a(href=`/profile/${user.userId}`) #{user.username}
+     a(href=`/profile/${user.username}`) #{user.username}
    
     
 
@@ -26,7 +26,7 @@ html
             td #{workout.workoutType}
             td #{workout.duration}
 
-  form(action=`/workout/${user.userId}` method="POST")
+  form(action=`/workout/${user.username}` method="POST")
     label(for="date") Date:
     input(type="text" name="date" id="date" required)
     label(for="type") Type:

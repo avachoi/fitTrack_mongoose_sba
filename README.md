@@ -59,18 +59,18 @@ The application will be running on http://localhost:8080.
 
 ### Profile Management
 
-- View Profile: After logging in, navigate to http://localhost:8080/profile/:userId to view your profile.
+- View Profile: After logging in, navigate to http://localhost:8080/profile/:username to view your profile.
 - Update Profile: Edit your profile information directly on the profile page.
 - Delete Profile: Delete your profile from the profile page.
 
 ### Workout Logging
 
-- View Workouts: Navigate to http://localhost:8080/workout/:userId to view your workouts.
+- View Workouts: Navigate to http://localhost:8080/workout/:username to view your workouts.
 - Add Workout: Use the form on the workouts page to add a new workout.
 - Delete Workout: Delete a workout directly from the workouts page.
 
 ### Meal Logging
 
-- View Meals: Navigate to http://localhost:8080/meals/:userId to view your meals.
+- View Meals: Navigate to http://localhost:8080/meals/:username to view your meals.
 - Add Meal: Use the form on the meals page to add a new meal.
 - Delete Meal: Delete a meal directly from the meals page.

@@ -7,7 +7,7 @@ html
     h1 FitTrack
     
     h2 profile
-    form(action=`/profile/${user.userId}?_method=PUT` method="POST")
+    form(action=`/profile/${user.username}?_method=PUT` method="POST")
       label(for="username") Username:
       input(type="text" name="username" id="username" value=user.username required)
       label(for="password") password:
@@ -18,5 +18,5 @@ html
       input(type="text" name="weight" id="weight" value=user.weight required)
       button(type="submit") save
       
-    form(action=`/profile/${user.userId}?_method=DELETE` method="POST")
+    form(action=`/profile/${user.username}?_method=DELETE` method="POST")
         button(type="submit") delete account

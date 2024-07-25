@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const workoutSchema = new mongoose.Schema({
-	userId: { type: String, required: true, unique: true },
-	date: { type: Number, required: true },
+	username: { type: String, required: true },
+	date: { type: Date, default: Date.now() },
 	workoutType: { type: String, required: true },
 	duration: { type: Number, required: true },
 });
